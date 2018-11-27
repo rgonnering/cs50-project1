@@ -1,3 +1,7 @@
+# application.py for Project1
+# ---------------------------
+# a Flask Book Application
+
 import os
 
 # from notes
@@ -15,18 +19,17 @@ if not os.getenv("DATABASE_URL"):
     raise RuntimeError("DATABASE_URL is not set")
 
 # Configure session to use filesystem
-#app.config["SESSION_PERMANENT"] = False
-#app.config["SESSION_TYPE"] = "filesystem"
-#Session(app)
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 # Set up database
-#engine = create_engine(os.getenv("DATABASE_URL"))
-#db = scoped_session(sessionmaker(bind=enginfrom flask import Flask e))
+engine = create_engine(os.getenv("DATABASE_URL"))
+db = scoped_session(sessionmaker(bind=engine))
 
 @app.route("/")
 def index():
 	return render_template("index.html")
-
 
 
 # Make the /login route work with POST.
@@ -36,10 +39,21 @@ def login():
 	password = request.form.get("password")
 	return render_template("login.html", name=name, password=password)
 
-# Make the /login route work with POST.
+
+# Make the /register route work with POST.
 @app.route("/register", methods=["POST"])
 def register():
 	name = request.form.get("name")
 	password = request.form.get("password")
+
 	return render_template("register.html", name=name, password=password)
+
+# Make the /search route work with POST.
+@app.route("/search", methods=["POST"])
+def search():
+	isbn = request.form.get("isbn")
+	title = request.form.get("title")
+	author = request.form.get("author")
+	year = request.form.get("year")
+	return render_template("search.html", isbn=isbn, title=title, author=author, year=year)
 

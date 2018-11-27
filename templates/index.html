@@ -20,4 +20,18 @@
     <button>Submit</button>        
 </form>
 
+<h1>Search for a Book!</h1>
+
+<form action="{{ url_for('search') }}" method="post">
+    <input name="isbn" type="text" placeholder="ISBN">
+    <br>
+    <input name="title" type="text" placeholder="Title">
+    <br>
+    <input name="author" type="text" placeholder="Author">    
+    <br>
+    <input name="year" type="text" placeholder="Year">
+    <br>
+    <button>Submit</button>        
+</form>
+
 {% endblock %}

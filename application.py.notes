@@ -1,3 +1,6 @@
+application.py.notes
+====================
+
 import os
 
 # from notes
@@ -23,11 +26,10 @@ Session(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
-
 @app.route("/")
 def index():
     return "Project 1: TODO"
-
+index
 
 
 """    
@@ -68,7 +70,7 @@ To access parameters submitted in the URL (?key=value) you can use the args attr
 	searchword = request.args.get('key', '')   
 """
 
-
+index
 
 """    
    * To redirect a user to another endpoint, use the redirect() function; to abort a request early with an error code, use the abort() function:
@@ -126,7 +128,87 @@ To access parameters submitted in the URL (?key=value) you can use the args attr
 
 Pseudo Elements - ways to affect parts of an HTML element
 ---------------
-Note <a href="#"></> is a placeholder and does NOT do anything.   
- """   
-    
+Note <a href="#"></> is a placeholder and does NOT do anything.  
+
+forms
+-----
+forms collect information from the user so he/she can submit data to the website.
+	<form>		    form tag
+	<input>		    input tag specifies an input field
+		type 		attribute which specifies the input format
+		placeholder	attribute default value
+		name		attribute for the name of the data field
+	<button>	    button tag to transfer data from input field
+				        to the website
+
+<form>
+	<input type="text" placeholder="Full Name" name="name">
+	<button> Submit! </button>
+</form>
+"""   
+
+
+
+"""   
+layout.html
+-----------
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Website!</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <h1>{% block heading %}{% endblock %}</h1>
+FLASK_AP
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
+
+index.html
+-----------
+{% extends "layout.html" %}
+
+{% block heading %}
+    Notes
+{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for note in notes %}
+            <li>{{ note }}</li>
+        {% endfor %}
+    </ul>
+    <form action="{{ url_for('index') }}" method="post">
+        <input type="text" name="notefield" placeholder="Enter Note Here">
+        <button>Add Note</button>
+    </form>
+{% endblock %}
+
+    OR
+
+index.html
+----------
+{% extends "layout.html" %}
+
+{% block heading %}
+    First Page
+{% endblock %}
+
+{% block body %}
+    <h3> Name Form </h3>
+    <form action="{{ url_for('hello') }}" method="post">
+        <input type="text" name="name" placeholder="Enter Your Name">
+        <button>Submit</button>
+    </form>
+{% endblock %}
+"""
+
+
+
+
+
+
+
     
