@@ -6,12 +6,20 @@
 {% endblock %}
 
 {% block body %}
-    ISBN, {{ isbn }}!
+<h1>Hi, {{username}}</h1>
+<br>
+<h1>Search for a Book!</h1>
+<br>
+<form action="{{ url_for('search') }}" method="post">
+    <input name="isbn" type="text" placeholder="ISBN">
     <br>
-    Your Title is {{ title }}!!!
+    <input name="title" type="text" placeholder="Title">
     <br>
-    Your Author is {{ author }}!!!
+    <input name="author" type="text" placeholder="Author">    
     <br>
-    Your Year is {{ year }}!!!
+    <input name="year" type="text" placeholder="Year">
+    <br>
+    <input type="submit" value="Search for my Book">        
+</form>
 
 {% endblock %}

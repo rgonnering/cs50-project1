@@ -1,0 +1,26 @@
+<!-- index.html -->
+<!-- ---------- -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Web Page!</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+
+    <body>
+        Error: {{msg}}, Try Again!
+        
+        <h1>What do you want to do?</h1>
+        
+        <form action="{{ url_for('menu') }}" method="post">
+            <div>
+                <input name="action" type="radio" value="login"> Login <br>
+                <input name="action" type="radio" value="register"> Register <br>
+                <input name="action" type="radio" value="search"> Search <br>
+                <input name="action" type="radio" value="other"> Other <br>
+                <input type="submit" value="Send my Order">         
+            </div>
+        </form>
+    </body>
+</html>

@@ -1,37 +1,21 @@
 <!--index.html -->
+<!-- ---------- -->
 {% extends "layout.html" %}
 
 {% block heading %}
-    Login
+    Home
 {% endblock %}
 
 {% block body %}
-<form action="{{ url_for('login') }}" method="post">
-    <input name="name" type="text" placeholder="User Name">
-    <input name="password" type="password" placeholder="Password">
-    <button>Submit</button>        
+<h1>What do you want to do?</h1>
+        
+<form action="{{ url_for('menu') }}" method="post">
+    <div>
+        <input name="action" type="radio" value="login"> Login <br>
+        <input name="action" type="radio" value="register"> Register <br>
+        <input name="action" type="radio" value="search"> Search <br>
+        <input name="action" type="radio" value="other"> Other <br>
+        <input type="submit" value="Send my Order">         
+    </div>
 </form>
-
-<h1>If you haven't registered then you won't be able to login!</h1>
-
-<form action="{{ url_for('register') }}" method="post">
-    <input name="name" type="text" placeholder="User Name">
-    <input name="password" type="password" placeholder="Password">
-    <button>Submit</button>        
-</form>
-
-<h1>Search for a Book!</h1>
-
-<form action="{{ url_for('search') }}" method="post">
-    <input name="isbn" type="text" placeholder="ISBN">
-    <br>
-    <input name="title" type="text" placeholder="Title">
-    <br>
-    <input name="author" type="text" placeholder="Author">    
-    <br>
-    <input name="year" type="text" placeholder="Year">
-    <br>
-    <button>Submit</button>        
-</form>
-
 {% endblock %}

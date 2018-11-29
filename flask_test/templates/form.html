@@ -1,0 +1,28 @@
+<!-- flask_test form.html -->
+
+<!DOCTYPE html>
+<html>
+    <!-- form.html -->
+    <head>
+        <title>My Web Page!</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        Your email: {{email}}<br>
+        Your username: {{username}}<br>
+        Your password: {{password}}<br>
+
+        <ul>
+        {%for user in signedUpUsers%}
+            <ul>{{user}}</ul>
+        {% endfor %}
+        </ul>
+
+        <ul>
+            {%for user in signedUpUsers%}
+                <li>{{user[0]}}, {{user[1]}}, {{user[2]}}</li>
+            {% endfor %}
+        </ul>
+
+    </body>
+</html>

@@ -1,36 +1,34 @@
-# application.py for Project1
-# ---------------------------
-# a Flask Book Application
+# <!-- flask_test -->
 
-# import packages
+# get os package
 import os
-from flask import render_template, request
-from flask import Flask, session
+
+# get flask functions
+from flask import Flask, request, url_for, render_template, session
 from flask_session import Session
+
+# get functions from sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 # Do this before running search_books.py:
 #   $ export DATABASE_URL="postgresql://rwg:sql@localhost:5432/project1"
+engine = create_engine(os.getenv("DATABASE_URL"))
+# create a 'scoped session' that ensures different users' interactions with the
+# database are kept separate 
+db = scoped_session(sessionmaker(bind=engine))
 
+# instantiate app
 app = Flask(__name__)
 
-# Check for environment variable
-if not os.getenv("DATABASE_URL"):
-    raise RuntimeError("DATABASE_URL is not set")
-
-# Configure session to use filesystem
+# Configure the app object
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+# Session is a collection of data specific to me
 Session(app)
-
-# Set up database
-engine = create_engine(os.getenv("DATABASE_URL"))
-db = scoped_session(sessionmaker(bind=engine))
 
 # declare a global empty list for users for this Session
 signedUpUsers = []
 logedInUsers = []
-
 
 @app.route("/")
 def index():
@@ -94,6 +92,7 @@ def search():
     #selections = db.execute("SELECT * FROM books WHERE title='I, Robot' ").fetchall()
 
     return render_template('list_selections.html', selections=selections)
+
 
 if __name__ == "__main__":
     app.run()

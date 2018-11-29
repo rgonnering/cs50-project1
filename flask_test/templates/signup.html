@@ -1,0 +1,24 @@
+<!-- flask_test signup.html -->
+<!-- ---------------------- -->
+<!DOCTYPE html>
+<html>
+    <!-- form.html -->
+    <head>
+        <title>My Web Page!</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        {{error_msg}}
+        
+        <form action="{{ url_for('signup') }}" method="post">
+
+            <div>
+                <input name="name" type="text" placeholder="Name"><br>
+                <input name="password" type="password" placeholder="Password"><br>
+                <input name="email" type="text" placeholder="Email"><br>
+                <input type="submit" value="Accept my Credentials">
+            </div>
+
+        </form>
+    </body>
+</html>
