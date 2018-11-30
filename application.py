@@ -7,6 +7,7 @@ import os
 from flask import render_template, request
 from flask import Flask, session
 from flask_session import Session
+import psycopg2                         # needed to pass variables to postgresql
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 # Do this before running search_books.py:
@@ -27,17 +28,31 @@ Session(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
-# declare a global empty list for users for this Session
-signedUpUsers = []
-logedInUsers = []
+# declare global empty lists for users for this Session
+signedUpUsers = []			# list of registered users
+logedInUsers = []			# list of logged-in users
+username = ""				# session username
+notes = {}					# book notes dictionary
+							# key : value
+							# where value is a list of notes
+							# isbn: notes[]
 
 
 @app.route("/")
 def index():
-    # return "Index"
-    msg = ""
-    email='roger.gonnering.us'
-    return render_template('index.html', email=email, msg=msg)
+    # if signedUpUsers doesn't exist, create it.
+    if session.get("signedUpUsers") is None:
+        session["signedUpUsers"] = []
+    # if "notes doesn't exist, create it.
+    if session.get("logedInUsers") is None:
+        session["logedInUsers"] = []
+    # if "notes doesn't exist, create it.
+    if session.get("username") is None:
+        username = ""
+    # if "notes doesn't exist, create it.
+    if session.get("notes") is None:
+        session["notes"] = {}						
+    return render_template('index.html')
 
 
 @app.route('/signup', methods = ['POST'])
@@ -65,7 +80,7 @@ def login():
                 logedInUsers.append([username, password])
                 return render_template('search.html', username=username)
     error_msg = "Please Register"
-    return render_template('search.html', username=error_msg)   
+    return render_template('form.html', username="Invalid Login")   
 
 
 @app.route('/menu', methods=['POST'])
@@ -90,10 +105,32 @@ def search():
     year = request.form.get("year")
 
     # execute SQL command and get all data with user constraintes 
+    count = 10
     selections = db.execute("SELECT * FROM books WHERE title LIKE '%"+title+"%' and author LIKE '%"+author+"%' and year LIKE '%"+year+"%' ").fetchall()
-    #selections = db.execute("SELECT * FROM books WHERE title='I, Robot' ").fetchall()
 
     return render_template('list_selections.html', selections=selections)
+
+
+@app.route('/book', methods=['POST'])
+def book():
+    id = request.form.get("select")
+    # get flight data for the selected flight_id
+    #flight = db.execute("SELECT origin, destination, duration FROM flights WHERE id = :id", {"id": flight_id}).fetchone()
+    count=10
+    #selection = db.execute("SELECT * FROM books limit :count", {"count": count}).fetchall()
+    selection = db.execute("SELECT * FROM books where id = :id", {"id": id}).fetchone()
+    # get book data for id
+    
+    #selection = db.execute().fetchall()
+    #query = "SELECT * FROM books limit %s;"
+    #selection = db.execute(query, count).fetchall()    
+    #selection = db.execute("SELECT * FROM books limit '+count+'").fetchall()
+    #selection = db.execute("SELECT * FROM books WHERE id LIKE '%"+id+"%' ").fetchall()
+    #selection = db.execute("SELECT * FROM books where id='+id+' ").fetchall()
+    #selection = db.execute("SELECT * FROM books where id=%s;", (id)).fetchall()
+    #selection = db.execute("""SELECT * FROM books where id=%s;""", (id)).fetchall()
+    return render_template('book.html', id=id, selection=selection)
+
 
 if __name__ == "__main__":
     app.run()

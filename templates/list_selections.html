@@ -13,29 +13,43 @@
         {% endfor %}
     </ul>
 
-    <table>
-        {% for book in selections %}
-            <tr>
-                <td> 
-                    <input type="radio" name="select"value="{{id}}" />
-                </td>
-                <td>
-                        {{book[0]}}
-                </td>                    
-                <td>
-                        {{book[1]}}
-                </td>
-                <td>
-                        {{book[2]}}
-                </td>
-                <td>
-                        {{book[3]}}
-                </td>
-                <td>
-                        {{book[4]}}
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+    <h1>Select the ID of the Book you are interested in.</h1>
 
+    <form action="{{ url_for('book') }}" method="post">
+        <div>
+            <table border=1>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ISBN</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Year</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in selections %}
+                        <tr>
+                            <td>
+                                <input type="radio" name="select" value="{{book[0]}}" />
+                            </td>                    
+                            <td>
+                                    {{book[1]}}
+                            </td>
+                            <td>
+                                    {{book[2]}}
+                            </td>
+                            <td>
+                                    {{book[3]}}
+                            </td>
+                            <td>
+                                    {{book[4]}}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>       
+            <input type="submit" value="Send my Order">
+        </div>
+    </form>
 {% endblock %}
