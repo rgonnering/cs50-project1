@@ -32,11 +32,10 @@ db = scoped_session(sessionmaker(bind=engine))
 signedUpUsers = []			# list of registered users
 logedInUsers = []			# list of logged-in users
 username = ""				# session username
-notes = {}					# book notes dictionary
+notes = {}  				# book notes dictionary
 							# key : value
 							# where value is a list of notes
 							# isbn: notes[]
-
 
 @app.route("/")
 def index():
@@ -72,7 +71,6 @@ def login():
     # get login credentials
     username = request.form.get('name')
     password = request.form.get('password')
-    
     # check if username exits
     for user in signedUpUsers:
         if user[0] == username:
@@ -86,7 +84,6 @@ def login():
 @app.route('/menu', methods=['POST'])
 def menu():
     action = request.form.get('action')
-
     if action == "register":
         return render_template('signup.html')    
     elif action == "login":
@@ -103,33 +100,25 @@ def search():
     title = request.form.get("title")
     author = request.form.get("author")
     year = request.form.get("year")
-
     # execute SQL command and get all data with user constraintes 
     count = 10
     selections = db.execute("SELECT * FROM books WHERE title LIKE '%"+title+"%' and author LIKE '%"+author+"%' and year LIKE '%"+year+"%' ").fetchall()
-
     return render_template('list_selections.html', selections=selections)
 
 
 @app.route('/book', methods=['POST'])
 def book():
     id = request.form.get("select")
-    # get flight data for the selected flight_id
-    #flight = db.execute("SELECT origin, destination, duration FROM flights WHERE id = :id", {"id": flight_id}).fetchone()
-    count=10
-    #selection = db.execute("SELECT * FROM books limit :count", {"count": count}).fetchall()
+    # get book data for id and note
+    id = request.form.get("select")   
+    note = request.form.get("notefield")
     selection = db.execute("SELECT * FROM books where id = :id", {"id": id}).fetchone()
-    # get book data for id
-    
-    #selection = db.execute().fetchall()
-    #query = "SELECT * FROM books limit %s;"
-    #selection = db.execute(query, count).fetchall()    
-    #selection = db.execute("SELECT * FROM books limit '+count+'").fetchall()
-    #selection = db.execute("SELECT * FROM books WHERE id LIKE '%"+id+"%' ").fetchall()
-    #selection = db.execute("SELECT * FROM books where id='+id+' ").fetchall()
-    #selection = db.execute("SELECT * FROM books where id=%s;", (id)).fetchall()
-    #selection = db.execute("""SELECT * FROM books where id=%s;""", (id)).fetchall()
-    return render_template('book.html', id=id, selection=selection)
+    if id not in notes:
+        notes[id] = []
+    if note:
+        notes[id].append(note)
+    bookNotes = notes[id]
+    return render_template('book.html', id=id, selection=selection, notes=bookNotes)
 
 
 if __name__ == "__main__":

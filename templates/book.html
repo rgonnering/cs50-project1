@@ -15,4 +15,21 @@
     {{selection[3]}}<br>
     {{selection[4]}}<br>
 
+    <ul>
+        {% if notes: %}
+            {% for note in notes %}
+            <li> {{note}}  </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
+    
+    <form action="{{ url_for('book') }}" method="post">
+        <div>
+            <input type="text" name="notefield" placeholder="Enter Note Here">
+            <input type="text" name="select" value={{id}}>
+            <input type="submit" value="Submit">
+
+        </div>
+    </form>
+
 {% endblock %}
