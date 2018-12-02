@@ -7,6 +7,7 @@ import os
 from flask import render_template, request
 from flask import Flask, session
 from flask_session import Session
+import requests                         # needed for Goodread API
 import psycopg2                         # needed to pass variables to postgresql
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -90,6 +91,13 @@ def menu():
         return render_template('login.html')
     elif action == "search":
         return render_template('search.html')
+    elif action == "goodread":
+        # get Goodread 
+        myISBN = "1632168146"
+        myKey = "KyNzMuBWuCAOoi42uosr8A"
+        res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": myKey, "isbn": myISBN} )
+
+        return render_template('goodread.html', res=res)    
     else:
          return render_template('index.html', msg="Error, Unknown Action Requested")
 
@@ -113,13 +121,25 @@ def book():
     id = request.form.get("select")   
     note = request.form.get("notefield")
     selection = db.execute("SELECT * FROM books where id = :id", {"id": id}).fetchone()
+    # add note, if avaiable
     if id not in notes:
         notes[id] = []
     if note:
         notes[id].append(note)
     bookNotes = notes[id]
-    return render_template('book.html', id=id, selection=selection, notes=bookNotes)
+    # get Goodread 
+    myISBN = selection[1]
+    myKey = "KyNzMuBWuCAOoi42uosr8A"
+    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": myKey, "isbns": myISBN})
 
+    # render book.html
+    return render_template('book.html', id=id, selection=selection, notes=bookNotes, res=res)
 
+@app.route('/goodread', methods=['POST'])
+def goodread():
+    myISBN = "0316113573"
+    myKey = "KyNzMuBWuCAOoi42uosr8A"
+    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": myKey, "isbn": myISBN}).json()
+    return render_template('goodread.html', res=res)
 if __name__ == "__main__":
     app.run()

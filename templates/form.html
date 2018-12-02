@@ -2,11 +2,13 @@
 <!-- --------- -->
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>My Web Page!</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    </head>
-    <body>
+    {% extends "layout.html" %}
+
+    {% block heading %}
+        Menu Action
+    {% endblock %}
+
+    {% block body %}
         <h1>You have successfully Registered.</h1>
         <br>
         Your email: {{email}}<br>
@@ -27,5 +29,4 @@
         <br>
         <h1>Congratulations, Click the "Next" Button to Login.</h1>
         <button type="button" onclick="window.location.href='{{ url_for( 'index') }}';">Next</button>
-    </body>
-</html>
+    {% endblock %}

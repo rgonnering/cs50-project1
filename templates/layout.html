@@ -1,15 +1,50 @@
 <!-- layout.html -->
+<!-- ----------- -->
 <!DOCTYPE html>
 <html>
     <head>
         <title>My Website!</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+        <script type="text/javascript">
+            $(window).on('scroll', function(){
+                if($(window).scrollTop()){
+                    $('nav').addClass('black');
+                }
+                else
+                {
+                    $('nav').removeClass('black');	
+                }
+            });
+        </script>
 
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
     </head>
     <body>
-        <h1>{% block heading %}{% endblock %}</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href= {{url_for('goodread')}}>Goodread</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="http://127.0.0.1:5000/menu">Register</a></li>
 
-        {% block body %}
-        {% endblock %}
+            </ul>
+        </nav>
+            
+        <section class="content">
+            <h1>{% block heading %}{% endblock %}</h1>
+        </section>
+        <section class="content">
+            {% block body %}
+            {% endblock %}
+        </section>
+
+            
     </body>
 </html>
