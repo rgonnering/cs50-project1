@@ -30,6 +30,17 @@ Result of request:
                 'average_rating': '4.04'
             }]
         }
+
+HTTP Response Codes:
+--------------------
+202 Accepted
+The request has been accepted for processing, but the processing has not been completed. The request might or might not be eventually acted upon, and may be disallowed when processing occurs. 
+ 
+422 Unprocessable Entity (WebDAV; RFC 4918)
+The request was well-formed but was unable to be followed due to semantic errors   
+        print(ares) results in <Response [422]>
+
+================================================
 """
 
 import requests
@@ -39,9 +50,22 @@ myISBN = "9781632168146"
 
 # define the main() function
 def main():
+    
+    print("By isbns")
     res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": myKey, "isbns": "9781632168146"})
     print(res.json())
-
+    print()
+    response = res.json()
+    print(response)     
+    print() 
+    print()   
+    print("By isbn")
+    #res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "KEY", "isbn": "1632168146"}) 
+    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": myKey, "isbns": "1632168146"})
+    response = res.json()
+    print(response)    
+    
+    
 # run the main() function
 if __name__ == "__main__":
     main()

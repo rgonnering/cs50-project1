@@ -139,7 +139,8 @@ def book():
 def goodread():
     myISBN = "0316113573"
     myKey = "KyNzMuBWuCAOoi42uosr8A"
-    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": myKey, "isbn": myISBN}).json()
+    res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": myKey, "isbn": myISBN})
+    response = res.json()
     return render_template('goodread.html', res=res)
 if __name__ == "__main__":
     app.run()
