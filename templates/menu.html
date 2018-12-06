@@ -3,7 +3,17 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-    Hello!
+    <Menu>    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href= {{url_for('goodread')}}>Goodread</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="http://127.0.0.1:5000/menu">Register</a></li>
+
+        </ul>
+    </nav></Menu>
 {% endblock %}
 
 {% block body %}

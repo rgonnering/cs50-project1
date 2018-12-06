@@ -4,11 +4,37 @@
 
 {% block heading %}
     Goodread
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href= {{url_for('goodread')}}>Goodread</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="http://127.0.0.1:5000/menu">Register</a></li>
+
+        </ul>
+    </nav>
 {% endblock %}
 
 {% block body %}
     Hello
     <br>
-    {{ res }}!!!
+
+    <div class="card-body">
+        <h6 class="card-title"> Title </h6>
+        <p class="card-text">{{ res[2] }}</p>
+        <h6 class="card-title"> Author</h6>
+        <p class="card-text">{{ res[3] }}</p>
+        <h6 class="card-title"> Year </h6>
+        <p class="card-text">{{ res[4] }}</p>
+        <h6 class="card-title"> ISBN </h6>
+        <p class="card-text">{{ res[1] }}</p>
+        <h6 class="card-title"> Goodread Rating </h6>
+
+    </div>
+
+
+
 
 {% endblock %}

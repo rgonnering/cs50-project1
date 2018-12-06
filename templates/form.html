@@ -5,16 +5,24 @@
     {% extends "layout.html" %}
 
     {% block heading %}
-        Menu Action
+        Form
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href= {{url_for('goodread')}}>Goodread</a></li>
+                <li><a href="#">Portfolio</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="http://127.0.0.1:5000/menu">Register</a></li>
+            </ul>
+        </nav>
     {% endblock %}
 
     {% block body %}
-        <h1>You have successfully Registered.</h1>
+        <h1>{{msg}}</h1>
         <br>
-        Your email: {{email}}<br>
         Your username: {{username}}<br>
         Your password: {{password}}<br>
-
+        Your email: {{email}}<br>
         <ul>
         {%for user in signedUpUsers%}
             <ul>{{user}}</ul>
@@ -27,6 +35,6 @@
             {% endfor %}
         </ul>
         <br>
-        <h1>Congratulations, Click the "Next" Button to Login.</h1>
-        <button type="button" onclick="window.location.href='{{ url_for( 'index') }}';">Next</button>
+        <h1>Congratulations, Click the "Next" Button to go back to the Menu.</h1>
+        <button type="button" onclick="window.location.href='{{ url_for( 'index') }}';">Home</button>
     {% endblock %}

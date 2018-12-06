@@ -4,10 +4,17 @@
 
 {% block heading %}
     Search!
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="{{ url_for('logout') }}"">Logout</a></li>
+        </ul>
+    </nav>
 {% endblock %}
 
-{% block body %}
-    <h1>Hi, {{username}}</h1>
+{% block body %}    
+    <h1>{{username}}</h1>       
+    <h1>{{msg}}</h1>
     <br>
     <h1>Search for a Book!</h1>
     <br>
@@ -19,6 +26,8 @@
         <input name="author" type="text" placeholder="Author">    
         <br>
         <input name="year" type="text" placeholder="Year">
+        <br>
+        <input name="username" value={{username}}>
         <br>
         <input type="submit" value="Search for my Book">        
     </form>

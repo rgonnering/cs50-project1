@@ -3,37 +3,45 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-    Hello!
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="{{ url_for('logout') }}"">Logout</a></li>
+        </ul>
+    </nav>
 {% endblock %}
 
 {% block body %}
-    <h1>Book, {{ id }}!</h1>
+    Book Information!
+    <h1>Selected Book<br>
+    {{username}}</h1>
     <br>
-    {{selection[0]}}<br>
-    {{selection[1]}}<br>
-    {{selection[2]}}<br>
-    {{selection[3]}}<br>
-    {{selection[4]}}<br>
-
+    ID: {{selection[0]}}<br>
+    ISBN: {{selection[1]}}<br>
+    Title: {{selection[2]}}<br>
+    Author: {{selection[3]}}<br>
+    Year: {{selection[4]}}<br>
+    Goodread Rating: {{rating}}<br>
     <ul>
-        {% if notes: %}
-            {% for note in notes %}
-            <li> {{note}}  </li>
+        {% if bookNotes: %}
+            Comments:
+            {% for note in bookNotes %}
+                <li> {{note}}  </li>
             {% endfor %}
         {% endif %}
     </ul>
     <br>
-    {% if res: %}
-        {{res}}
-    {% else: %}
-        No Goodread data for {{selection[2]}}
-    {% endif %}
-    
+
     <form action="{{ url_for('book') }}" method="post">
         <div>
+
             <input type="text" name="notefield" placeholder="Enter Note Here">
-            <input type="text" name="select" value={{id}}>
-            <input type="submit" value="Submit">
+
+
+            <select  name="select" value={{selection[0]}}>
+
+            <input type="submit" value="Save my comment">
 
         </div>
     </form>

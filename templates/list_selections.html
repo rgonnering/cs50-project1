@@ -3,17 +3,23 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-    Hello!
+    List Selections!
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
 {% endblock %}
 
 {% block body %}
 
-
+    <h1>{{username}}</h1>
     <h1>Select the ID of the Book you are interested in.</h1>
 
     <form action="{{ url_for('book') }}" method="post">
         <div>
-            <table border=1>
+            <table class=table>
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -25,6 +31,7 @@
                 </thead>
                 <tbody>
                     {% for book in selections %}
+                        <div>
                         <tr>
                             <td>
                                 <input type="radio" name="select" value="{{book[0]}}" />
@@ -42,10 +49,12 @@
                                     {{book[4]}}
                             </td>
                         </tr>
-                    {% endfor %}
+                        </div>
+                        {% endfor %}
                 </tbody>
             </table>       
-            <input type="submit" value="Send my Order">
+
+            <input type="submit" value="Show me the Selected Book">
         </div>
     </form>
 {% endblock %}
