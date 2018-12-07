@@ -175,8 +175,10 @@ def book():
     bookNotes = db.execute("SELECT * FROM bookcomments where isbn = :isbn", {"isbn": selection.isbn}).fetchall()
 
     # render book.html
+    print("Book Render1: ", username, selection)
+    print("Book Render2: ", bookNotes, gr_rating)    
     return render_template('book.html', username=username, selection=selection, notes=bookNotes, rating=gr_rating)
-    print("Book Render: ", username, selection)
+
 
 
 # logout -------------------------------------------------------
