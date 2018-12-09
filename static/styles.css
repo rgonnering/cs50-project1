@@ -92,8 +92,10 @@ section.content p {
 	border: 1px solid black;
 	width: 60%;
 	margin-left: 20%;
-	#margin: auto;
-    #position: relative;
+}
+
+.myTable td th {
+	border: 1px solid black;	
 }
 
 .little_table {
@@ -104,29 +106,17 @@ section.content p {
     #position: relative;
 }
 
-#tr:nth-child(even) {background-color: cyan !important;}
-#tr:nth-child(odd) {background-color: #FFF ! important;}
-th {
-	background-color: rgb(245, 175, 69);
-}
-
-table tr:nth-child(even) {background-color: cyan !important;}
-#.table tr:hover {background-color: #ddd;}
-
-table.table {
-    width: auto;
-}
-
-table.table .table-bordered {
-	border: 3px solid black;
-}
-.table .thead-light th {
-	color: black;
+.table th {
 	background-color: rgb(245, 175, 69);
 	border: 2px;
 	border-color: black;
-  }
-  
-.table_nice {
-	border: 1px solid black;
-}  
+}
+
+.table tr:nth-child(even) {background-color: cyan !important;}
+.table tr:nth-child(odd) {background-color: yellow !important;}
+.table tr:hover {background-color: rgb(211, 177, 241) !important;}
+
+.table .table-bordered {
+	border: 3px solid black;
+}
+

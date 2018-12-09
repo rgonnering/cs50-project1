@@ -130,20 +130,19 @@ def menu():
 
 @app.route('/search', methods=['POST'])
 def search():
-
-
+    username = session['username']
     isbn = request.form.get("isbn")
     title = request.form.get("title")
     author = request.form.get("author")
     year = request.form.get("year")
+    print("Search2: ", session['username'])
 
     # execute SQL command and get all data with user constraintes 
     selections = db.execute("SELECT * FROM books WHERE title LIKE '%"+title+"%' and author LIKE '%"+author+"%' and year LIKE '%"+year+"%' ").fetchall()
-    
-    # check session variables
-    username = session['username']
-
-    print("Search2: ", session['username'])
+    # check if book is in the books database
+    if not selections:
+        return render_template('search.html', username=username, msg="Book is not in the database. Please try again.")
+    # book is in database
     return render_template('list_selections.html', selections=selections, username=username)
 
 
