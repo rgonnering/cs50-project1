@@ -3,21 +3,19 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-    Search!
     <nav>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="{{ url_for('logout') }}"">Logout</a></li>
+            <li><a href="/">Start Over</a></li>
+            <li><a href="{{ url_for('menu') }}">Home</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
     </nav>
 {% endblock %}
 
+
 {% block body %}    
-    <h1>{{username}}</h1>       
-    <h1>{{msg}}</h1>
-    <br>
+    <h1> {{ username }}, {{msg}}</h1>
     <h1>Search for a Book!</h1>
-    <br>
     <form action="{{ url_for('search') }}" method="post">
         <input name="isbn" type="text" placeholder="ISBN">
         <br>
@@ -27,7 +25,6 @@
         <br>
         <input name="year" type="text" placeholder="Year">
         <br>
-        <input name="username" value={{username}}>
         <br>
         <input type="submit" value="Search for my Book">        
     </form>

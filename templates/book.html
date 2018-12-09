@@ -3,32 +3,56 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-
     <nav>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="{{ url_for('logout') }}"">Logout</a></li>
+            <li><a href="/">Start Over</a></li>
+            <li><a href="{{ url_for('menu') }}">Home</a></li>
+            <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
     </nav>
 {% endblock %}
 
 {% block body %}
     Book Information!
-    <h1>Selected Book<br>
-    {{username}}</h1>
+    <h1>Selected Book</h1>
     <br>
-    ID: {{selection[0]}}<br>
-    ISBN: {{selection[1]}}<br>
-    Title: {{selection[2]}}<br>
-    Author: {{selection[3]}}<br>
-    Year: {{selection[4]}}<br>
-    Goodread Rating: {{rating}}<br>
+    <div>
+            <table  class="table table-striped table-bordered" 
+            style="width:20%;margin-left:40%;">
+            <tr>
+                <td> ID: </td>
+                <td> {{selection[0]}} </td>   
+            </tr>
+            <tr>
+                    <td> ISBN: </td>
+                    <td> {{selection[1]}} </td>  
+            </tr>
+            <tr>
+                    <td> Title: </td>
+                    <td> {{selection[2]}} </td>   
+            </tr> 
+            <tr>
+                    <td> Author: </td>
+                    <td> {{selection[3]}} </td>   
+            </tr> 
+            <tr>
+                    <td> Year: </td>
+                    <td> {{selection[4]}} </td>   
+            </tr>    
+            <tr>
+                    <td> Goodread Rating: </td>
+                    <td> {{rating}} </td> 
+            </tr>                          
+        </table>
+    </div>
+    <br>
 
-
+    <div >
         {% if notes %}
             <h1>Comments:</h1>
-            <table class=table>
-                <thead>
+            <table  class="table table-striped table-bordered table-hover" 
+                    style="width:60%;margin-left:20%;">
+                <thead >
                     <tr>
                         <th>username</th>
                         <th>comment</th>
@@ -44,17 +68,16 @@
                 </tbody>    
             </table>
         {% endif %}
-
+    </div>
     <br>
 
     <form action="{{ url_for('book') }}" method="post">
         <div>
 
             <input type="text" name="notefield" placeholder="Enter Note Here">
+            <br>
 
-
-            <select  name="select" value={{selection[0]}}>
-
+            <br><br>
             <input type="submit" value="Save my comment">
 
         </div>

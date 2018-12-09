@@ -3,22 +3,22 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-    Login
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-        </ul>
-    </nav>
+<nav>
+    <ul>
+        <li><a href="/">Start Over</a></li>
+    </ul>
+</nav>
 {% endblock %}
 
 {% block body %}
-    <h1>Login Screen</h1>
+    <h1>{{ msg}} <br>
+        Login Screen</h1>
     <br>
     <form action="{{ url_for('login') }}" method="post">
 
         <div>
             <input name="name" type="text" placeholder="Name"><br>
-            <input name="password" type="password" placeholder="Password"><br>
+            <input name="password" type="password" placeholder="Password"><br><br>
             <input type="submit" value="Accept my Credentials">
         </div>
     </form> 

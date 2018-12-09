@@ -3,24 +3,19 @@
 {% extends "layout.html" %}
 
 {% block heading %}
-    Register
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href= {{url_for('goodread')}}>Goodread</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li><a href="#">Team</a></li>
-            <li><a href="http://127.0.0.1:5000/menu">Register</a></li>
-
-        </ul>
-    </nav>
+<nav>
+    <ul>
+        <li><a href="/">Home</a></li>
+    </ul>
+</nav>
 {% endblock %}
 
 {% block body %}
+Register:
+<br>
 <form action="{{ url_for('signup') }}" method="post">
     <div>
-        <input name="name" type="text" placeholder="Name"><br>
+        <input name="name" type="text" placeholder="User Name"><br>
         <input name="password" type="password" placeholder="Password"><br>
         <input name="email" type="text" placeholder="Email Address"><br>
         <input type="submit" value="Accept my Credentials">

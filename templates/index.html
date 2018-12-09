@@ -6,13 +6,7 @@
     Home
     <nav>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href= {{url_for('goodread')}}>Goodread</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li><a href="render_template('login.html', method='post')">Login</a></li>
-            <li><a href="render_template('signup.html')">Register</a></li>
-
+            The Book Club
         </ul>
     </nav>
 {% endblock %}
@@ -25,7 +19,6 @@
         <input name="action" type="radio" value="login"> Login <br>
         <input name="action" type="radio" value="register"> Register <br>
         <input name="action" type="radio" value="search"> Search <br>
-        <input name="action" type="radio" value="goodread"> Goodread <br>        
         <input name="action" type="radio" value="other"> Other <br>
         <input type="submit" value="Enter">         
     </div>

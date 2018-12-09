@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:700');
+
 body {
 	margin: 0;
 	padding: 0;
@@ -63,27 +63,12 @@ nav ul li a:hover {
 	background: #f00;
 }
 
-section.sec1 {
-	width: 100%;
-	height: 100vh;
-	background: url(bg1.jpg);
-	background-size: cover;
-}
-section.sec2 {
-	width: 100%;
-	height: 100vh;
-	background: url(bg2.jpg);
-	background-size: cover;
-}
-section.sec3 {
-	width: 100%;
-	height: 100vh;
-	background: url(bg3.png);
-	background-size: cover;
-}
+
 section.content {
     padding: 10px;
-    text-align: center;
+	text-align: center;
+	width: 100%;
+	position: relative;
 }
 section.content h1 {
     margin: 0;
@@ -97,8 +82,51 @@ section.content p {
 	font-size: 1.1em;
 }
 
-.table {
-	border=1
-	margin: auto;
-    position: relative;
+
+# Center aligning has no effect if the width property is not set (or set to 100%).
+.center {
+	margin: auto;		
+	width: 30%;
 }
+.myTable {
+	border: 1px solid black;
+	width: 60%;
+	margin-left: 20%;
+	#margin: auto;
+    #position: relative;
+}
+
+.little_table {
+	border: 1px solid black;
+	width: 20%;
+	margin-left: 40%;
+	#margin: auto;
+    #position: relative;
+}
+
+#tr:nth-child(even) {background-color: cyan !important;}
+#tr:nth-child(odd) {background-color: #FFF ! important;}
+th {
+	background-color: rgb(245, 175, 69);
+}
+
+table tr:nth-child(even) {background-color: cyan !important;}
+#.table tr:hover {background-color: #ddd;}
+
+table.table {
+    width: auto;
+}
+
+table.table .table-bordered {
+	border: 3px solid black;
+}
+.table .thead-light th {
+	color: black;
+	background-color: rgb(245, 175, 69);
+	border: 2px;
+	border-color: black;
+  }
+  
+.table_nice {
+	border: 1px solid black;
+}  
