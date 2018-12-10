@@ -159,7 +159,8 @@ def book():
     else:
         id = session['book_id']
     comment = request.form.get("notefield")
-    print("Book Comment: ", username, id, comment)
+    rating = request.form.get("action")
+    print("Book Comment: ", username, id, comment, rating)
 
     # get books data for id
     selection = db.execute("SELECT * FROM books where id = :id", {"id": id}).fetchone()
@@ -172,13 +173,16 @@ def book():
     data = response.json()
     gr_rating = (data['books'][0]['average_rating'])
 
-    print("Book Content: ", id, username, selection.isbn, comment, gr_rating)
+    print("Book Content: ", id, username, selection.isbn, comment, rating)
 
     # Add notes, in applicable
+    if not rating:
+        rating = 3
+
     if comment:
         result = db.execute("INSERT INTO bookcomments (username,isbn,mycomment,myreview) \
             VALUES (:u, :isbn, :c, :r)", \
-            { "u": username, "isbn": selection.isbn, "c": comment, "r": gr_rating })
+            { "u": username, "isbn": selection.isbn, "c": comment, "r": rating })
         db.commit()    
 
 
@@ -189,7 +193,7 @@ def book():
 
     # render book.html
     print("Book Render1: ", username, selection)
-    print("Book Render2: ", bookNotes, gr_rating)    
+    print("Book Render2: ", bookNotes, rating)    
     return render_template('book.html', username=username, selection=selection, notes=bookNotes, rating=gr_rating)
 
 

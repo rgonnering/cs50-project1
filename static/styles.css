@@ -4,6 +4,8 @@ body {
 	padding: 0;
 	font-family: sans-serif;
 }
+
+# menu
 nav {
 	position: fixed;
 	top: 0;
@@ -63,7 +65,7 @@ nav ul li a:hover {
 	background: #f00;
 }
 
-
+# section.center is used in layout.com
 section.content {
     padding: 10px;
 	text-align: center;
@@ -84,20 +86,23 @@ section.content p {
 
 
 # Center aligning has no effect if the width property is not set (or set to 100%).
+# .center is used in layout.com
 .center {
 	margin: auto;		
 	width: 30%;
 }
+
+# table styling for myTable, used in list_selections.html
 .myTable {
 	border: 1px solid black;
 	width: 60%;
 	margin-left: 20%;
 }
-
 .myTable td th {
 	border: 1px solid black;	
 }
 
+# table styling overrides for bootstrap, some of which don't work
 .little_table {
 	border: 1px solid black;
 	width: 20%;

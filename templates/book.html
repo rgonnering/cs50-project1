@@ -49,20 +49,22 @@
 
     <div >
         {% if notes %}
-            <h1>Comments:</h1>
+            <h1>Reviewer Comments:</h1>
             <table  class="table table-striped table-bordered table-hover" 
                     style="width:60%;margin-left:20%;">
                 <thead >
                     <tr>
-                        <th>username</th>
-                        <th>comment</th>
+                        <th>Username</th>
+                        <th>User Comments</th>
+                        <th>User Ratings</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for note in notes %}
                     <tr>
-                        <td> {{note[1]}} </td>
-                        <td> {{note[3]}} </td>
+                        <td> {{ note[1] }} </td>
+                        <td> {{ note[3] }} </td>
+                        <td> {{ note[4] }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>    
@@ -74,12 +76,43 @@
     <form action="{{ url_for('book') }}" method="post">
         <div>
 
-            <input type="text" name="notefield" placeholder="Enter Note Here">
+
+            <table class='myTable' style="width: 50%;margin:auto;">
+                <thead>
+                    <tr>
+                        <th>Check a Box</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td><input type="radio" name="action" value="1" ></td>                    
+                            <td> 1 - Did not like </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="action" value="2" ></td>                    
+                            <td> 2 - Could be better </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="action" value="3" ></td>                    
+                            <td> 3 - OK </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="action" value="4" ></td>                    
+                            <td> 4 - Good </td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="action" value="5" ></td>                    
+                            <td> 5 - Great </td>
+                        </tr>
+                </tbody>
+            </table>     
             <br>
-
+            Write your comments on this book here:
+            <br>
+            <textarea name="notefield" rows="10" cols="30">Comment:  </textarea>
             <br><br>
-            <input type="submit" value="Save my comment">
-
+            <input type="submit" value="Save my comment and review">
         </div>
     </form>
 
