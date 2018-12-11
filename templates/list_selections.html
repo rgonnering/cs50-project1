@@ -5,8 +5,8 @@
 {% block heading %}
     <nav>
         <ul>
-            <li><a href="/">Start Over</a></li>
-            <li><a href="{{ url_for('menu') }}">Home</a></li>
+            <b style="margin-right:200px;">The Book Club</b>
+            <li><a href="/">Home</a></li>
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
     </nav>
@@ -19,7 +19,8 @@
     <div class="a">
         <form action="{{ url_for('book') }}" method="post">
 
-            <table class='myTable'>
+            <table  class="table table-striped table-bordered table-hover" 
+                    style="width:60%;margin-left:20%;">
                 <thead>
                     <tr>
                         <th>ID</th>

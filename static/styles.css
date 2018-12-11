@@ -1,11 +1,12 @@
-
+@import url('https://fonts.googleapis.com/css?family=Roboto:700');
 body {
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
 }
 
-# menu
+
+/* ********************** Menu ********************** */
 nav {
 	position: fixed;
 	top: 0;
@@ -14,103 +15,95 @@ nav {
 	height: 100px;
 	padding: 10px 100px;
 	box-sizing: border-box;
-    transition: .5s;
-    background-color: yellow;
+	transition: .5s;
+	background-color: yellow;
 }
 nav.black {
-	background: rgba(0,0,0,.8);
-	height: 80px;
-	padding: 10px 50px;
+        background: rgba(0,0,0,.8);
+        height: 80px;
+        padding: 10px 50px;
 }
 nav .logo {
-	float: left;
-	background:#fff;
-	border-radius: 50%;
+        float: left;
+        background:#fff;
+        border-radius: 50%;
 }
 nav .logo img {
-	height: 80px;
-	transition: .5s;
+        height: 80px;
+        transition: .5s;
 }
 nav .logo img:hover {
     -webkit-transform: rotate(360deg);
 }
 nav.black .logo img {
-	height: 60px;
+        height: 60px;
 }
 nav ul {
-	float: right;
-	margin: 0;
-	padding: 0;
-	display: flex;
+        float: right;
+        margin: 0;
+        padding: 0;
+        display: flex;
 }
 nav ul li {
-	list-style: none;
+        list-style: none;
 }
 nav ul li a {
-	line-height: 80px;
-	color: #262626;
-	font-family:'Roboto', sans-serif;
-	padding: 5px 20px;
-	text-decoration: none;
-	text-transform: uppercase;
-	transition: .5s;
+        line-height: 80px;
+        color: #262626;
+        font-family:'Roboto', sans-serif;
+        padding: 5px 20px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: .5s;
 }
 nav.black ul li a {
-	color: #fff;
-	line-height: 60px;
+        color: #fff;
+        line-height: 60px;
 }
 nav ul li a.active,
 nav ul li a:hover {
-	color: #fff;
-	background: #f00;
+        color: #fff;
+        background: #f00;
 }
 
-# section.center is used in layout.com
+
+/* ********************** Body ********************** */
+section.sec1 {
+        width: 100%;
+        height: 100vh;
+        background: url(bg1.jpg);
+        background-size: cover;
+}
+section.sec2 {
+        width: 100%;
+        height: 100vh;
+        background: url(bg2.jpg);
+        background-size: cover;
+}
+section.sec3 {
+        width: 100%;
+        height: 100vh;
+        background: url(bg3.png);
+        background-size: cover;
+}
 section.content {
     padding: 10px;
-	text-align: center;
-	width: 100%;
-	position: relative;
+    text-align: center;
 }
 section.content h1 {
     margin: 0;
     margin-top: 100px;
-	padding: 0;
-	font-size: 2em;
+        padding: 0;
+        font-size: 2em;
 }
 section.content p {
-	margin: 20px 0 0;
-	padding: 0;
-	font-size: 1.1em;
+        margin: 20px 0 0;
+        padding: 0;
+        font-size: 1.1em;
 }
 
 
-# Center aligning has no effect if the width property is not set (or set to 100%).
-# .center is used in layout.com
-.center {
-	margin: auto;		
-	width: 30%;
-}
-
-# table styling for myTable, used in list_selections.html
-.myTable {
-	border: 1px solid black;
-	width: 60%;
-	margin-left: 20%;
-}
-.myTable td th {
-	border: 1px solid black;	
-}
-
-# table styling overrides for bootstrap, some of which don't work
-.little_table {
-	border: 1px solid black;
-	width: 20%;
-	margin-left: 40%;
-	#margin: auto;
-    #position: relative;
-}
-
+/* *********** Bootstrap Table Overrides ************* */
 .table th {
 	background-color: rgb(245, 175, 69);
 	border: 2px;
@@ -124,4 +117,3 @@ section.content p {
 .table .table-bordered {
 	border: 3px solid black;
 }
-

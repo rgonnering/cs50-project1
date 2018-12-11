@@ -5,8 +5,8 @@
 {% block heading %}
     <nav>
         <ul>
-            <li><a href="/">Start Over</a></li>
-            <li><a href="{{ url_for('menu') }}">Home</a></li>
+            <b style="margin-right:200px;">The Book Club</b>
+            <li><a href="/">Home</a></li>
             <li><a href="{{ url_for('logout') }}">Logout</a></li>
         </ul>
     </nav>
@@ -77,7 +77,7 @@
         <div>
 
 
-            <table class='myTable' style="width: 50%;margin:auto;">
+            <table class='myTable' style="width: 30%;margin:auto;">
                 <thead>
                     <tr>
                         <th>Check a Box</th>
@@ -108,7 +108,7 @@
                 </tbody>
             </table>     
             <br>
-            Write your comments on this book here:
+            Write your <b>Comments</b> on this Book here:
             <br>
             <textarea name="notefield" rows="10" cols="30">Comment:  </textarea>
             <br><br>
