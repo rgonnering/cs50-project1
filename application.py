@@ -56,14 +56,13 @@ def signup():
 
 @app.route('/login', methods=['POST'])
 def login():
-
-    # # get login credentials
+    # get login credentials
     usern = request.form.get('name')
     passw = request.form.get('password')
     print ("login1: ", usern, passw)   
     # Check if username is already logged in
     if 'username' in session:
-        msg = "You are logged in."
+        msg = "You are already logged in."
         return render_template('search.html', username=usern, msg=msg)
     # User is not logged in, so check if user matches a Registered user
     result = db.execute("SELECT * FROM registered where username = :u", {"u": usern}).fetchone()    
@@ -118,7 +117,7 @@ def search():
     year = request.form.get("year")
     print("Search2: ", session['username'])
     # execute SQL command and get all data with user constraintes 
-    selections = db.execute("SELECT * FROM books WHERE title LIKE '%"+title+"%' and author LIKE '%"+author+"%' and year LIKE '%"+year+"%' ").fetchall()
+    selections = db.execute("SELECT * FROM books WHERE isbn LIKE '%"+isbn+"%' and title LIKE '%"+title+"%' and author LIKE '%"+author+"%' and year LIKE '%"+year+"%' ").fetchall()
     # check if book is in the books database
     if not selections:
         return render_template('search.html', username=username, msg="Book is not in the database. Please try again.")
@@ -157,7 +156,6 @@ def book():
             VALUES (:u, :isbn, :c, :r)", \
             { "u": username, "isbn": selection.isbn, "c": comment, "r": rating })
         db.commit()    
-
     # get books data for id
     selection = db.execute("SELECT * FROM books where id = :id", {"id": id}).fetchone()
     # get notes, if avaiable

@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Form {{msg}}</h1>
+    <h1>Form: {{msg}}</h1>
     <br>
     Your username: {{username}}<br>
     Your password: {{password}}<br>
@@ -31,5 +31,5 @@
     </ul>
     <br>
     <h1>Congratulations, Click the "Next" Button to go back to the Menu.</h1>
-    <button type="button" onclick="window.location.href='{{ url_for( 'index') }}';">Home</button>
+    <button type="button" onclick="window.location.href='{{ url_for( 'index') }}';">Next</button>
 {% endblock %}

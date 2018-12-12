@@ -1,4 +1,10 @@
-Flask
-Flask-Session
-psycopg2
-SQLAlchemy
+    flask
+    Flask-Session
+    flask-sqlalchemy
+    jinja2
+    postgresql
+    psycopg2
+    python
+    requests
+    sqlalchemy
+    werkzeug
